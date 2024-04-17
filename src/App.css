@@ -1,0 +1,66 @@
+@import url(https://db.onlinewebfonts.com/c/8f3bca6efd25a114cb3ea14726d7242a?family=Oli+Grotesk+L+Regular);
+
+
+.widget-button {
+    position: absolute;
+    right:  0px;
+    bottom: 0px;
+    padding: 20px;
+}
+.chatIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:8px;
+    gap: 15px;
+}
+.botDetails{
+    padding:8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 15px;
+}
+.botName{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Oli Grotesk L Regular";
+}
+.card{
+    width: 477px;
+    height: 590px;
+    position: relative;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.hover-effect {
+border: none;
+padding:5px;
+}
+
+.footer{
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    
+}
+.novagito-logo{
+    padding: 5px;
+}
+.query{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    background-color: #0057cb;
+}
+.text-field{
+    padding-top: 5px;
+    
+    width: 477px;
+}
