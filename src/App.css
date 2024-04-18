@@ -13,6 +13,7 @@
     align-items: center;
     padding:8px;
     gap: 15px;
+
 }
 .botDetails{
     padding:8px;
@@ -30,6 +31,9 @@
     width: 477px;
     height: 590px;
     position: relative;
+    margin-right: 55px;
+    margin-bottom: 10px;
+    
 }
 .header{
     display: flex;
@@ -61,6 +65,14 @@ padding:5px;
 }
 .text-field{
     padding-top: 5px;
-    
     width: 477px;
 }
+.floating-button {
+  position: relative;
+  display: flex;
+  margin-right: 50px;
+  justify-content: flex-end;
+}
+
+
+
