@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Fab from "@mui/material/Fab";
 import { Avatar } from "@mui/material";
-import dynamicData from "../../assets/Profile.png";
 import Container from "../Container/Container";
 
-const FloatingButton = () => {
+
+
+
+const FloatingButton = ({user_id}) => {
   const [containerVisible, setContainerVisible] = useState(false);
+  const [themeData, setThemeData] = useState(null);
+  const { popup_picture } = themeData?.results || {};
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+           `http://stanging-backend-chatbot-env.eba-xpae3fqu.ap-southeast-1.elasticbeanstalk.com/api/v1/chatbot-customizations/${user_id}/`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await response.json();
+        setThemeData(data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [user_id]);
 
   const toggleContainer = () => {
     setContainerVisible((prevVisible) => !prevVisible);
@@ -17,7 +42,7 @@ const FloatingButton = () => {
 
   return (
     <div>
-      <Container isOpen={containerVisible} onClose={handleClose} />
+      <Container isOpen={containerVisible} onClose={handleClose} themeData={themeData} />
       <div className="floating-button">
         <Fab
           style={{ width: "60px", height: "60px", position: "relative" }}
@@ -27,7 +52,7 @@ const FloatingButton = () => {
           <Avatar
             style={{ width: "60px", height: "60px" }}
             alt="FloatingAvatar"
-            src={dynamicData}
+            src={popup_picture}
           />
         </Fab>
       </div>

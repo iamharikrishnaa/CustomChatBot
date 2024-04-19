@@ -16,7 +16,7 @@ const MessageContainer = ({ queries, responses, themeData }) => {
   return (
     <div
       className="message-container"
-      style={{ maxHeight: "350px", overflowY: "auto" }}
+      style={{ maxHeight: "417px", overflowY: "auto" }}
     >
       {queries.map((query, index) => (
         <div key={`query-${index}`}>

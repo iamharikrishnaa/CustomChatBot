@@ -5,32 +5,12 @@ import MessageContainer from "./MessageContainer";
 import { Responses } from "../../utils";
 import Footer from "./Footer";
 import PropTypes from "prop-types"; // Import PropTypes
+       
 
-const Container = ({ isOpen, onClose }) => {
+const Container = ({ isOpen, onClose,themeData }) => {
   const [queries, setQueries] = useState([]);
   const [responses, setResponses] = useState(Responses);
-  const [themeData, setThemeData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://stanging-backend-chatbot-env.eba-xpae3fqu.ap-southeast-1.elasticbeanstalk.com/api/v1/chatbot-customizations/deea696a-593c-411a-aa06-d5b906e34402/"
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-
-        const data = await response.json();
-        setThemeData(data)
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  
 
   //Function to add a new query
   const addQueryAndResponse = (query, response) => {
@@ -77,6 +57,7 @@ const Container = ({ isOpen, onClose }) => {
 Container.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  themeData: PropTypes.func.isRequired,
 };
 
 export default Container;

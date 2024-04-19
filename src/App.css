@@ -56,8 +56,21 @@ padding:5px;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     
 }
-.novagito-logo{
-    padding: 5px;
+.footer-statement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15PX;
+    gap:5px;
+}
+.powered-by{
+    font-size: larger;
+    font-family: Oli Grotesk;
+}
+.novagito-logo img{
+    height: 20px;
+    background-color: #FFF;
+   
 }
 .query{
     display: flex;

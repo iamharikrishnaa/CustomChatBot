@@ -60,8 +60,15 @@ const Footer = ({ onSubmit, themeData }) => {
             />
           </div>
         </div>
-        <div className="novagito-logo">
-          Powered By <img style={{width:20,height:20}} src={novagito} alt="Novagito" />
+        <div className="footer-statement">
+          <div className="powered-by">Powered By</div>
+          <div className="novagito-logo">
+            <img
+              className="novagito-image"
+              src={novagito}
+              alt="Novagito"
+            />
+          </div>
         </div>
       </div>
     </form>
