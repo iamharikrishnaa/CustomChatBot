@@ -1,0 +1,68 @@
+ResponseAPI code:
+
+import { useState, useEffect } from "react";
+import { Card } from "@mui/material";
+import Header from "./Header";
+import MessageContainer from "./MessageContainer";
+import Footer from "./Footer";
+import PropTypes from "prop-types";
+
+const Container = ({ isOpen, onClose }) => {
+  const [queries, setQueries] = useState([]);
+  const [responses, setResponses] = useState([]);
+
+  // Function to make API call and fetch responses for a query
+  const fetchResponse = async (query) => {
+    try {
+      const response = await fetch(`YOUR_API_ENDPOINT?query=${query}`);
+      const responseData = await response.json();
+      return responseData; // Assuming responseData is an array of responses
+    } catch (error) {
+      console.error("Error fetching response:", error);
+      return []; // Return empty array if there's an error
+    }
+  };
+
+  // Function to add a new query and fetch responses
+  const addQueryAndFetchResponse = async (query) => {
+    setQueries([...queries, query]);
+    const fetchedResponses = await fetchResponse(query);
+    setResponses([...responses, fetchedResponses]);
+    // Update local storage with the new queries array
+    localStorage.setItem('queries', JSON.stringify([...queries, query]));
+    // Update local storage with the new responses array
+    localStorage.setItem('responses', JSON.stringify([...responses, fetchedResponses]));
+  };
+
+  // Function to retrieve queries and responses from local storage on component mount
+  useEffect(() => {
+    const storedQueries = localStorage.getItem('queries');
+    if (storedQueries) {
+      setQueries(JSON.parse(storedQueries));
+    }
+
+    const storedResponses = localStorage.getItem('responses');
+    if (storedResponses) {
+      setResponses(JSON.parse(storedResponses));
+    }
+  }, []);
+
+  return (
+    <div>
+      {isOpen && (
+        <Card variant="outlined" className="card" sx={{ borderRadius: 2 }}>
+          <Header onClose={onClose} />
+          <MessageContainer queries={queries} responses={responses} />
+          <Footer onSubmit={addQueryAndFetchResponse} />
+        </Card>
+      )}
+    </div>
+  );
+};
+
+Container.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default Container;

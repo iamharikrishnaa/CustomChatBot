@@ -2,22 +2,23 @@ import { Avatar } from "@mui/material";
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
-import dynamicData from "../../assets/avatar.jpeg";
 import PropTypes from "prop-types";
 
-const Header = ({onClose,reset }) => {
+const Header = ({onClose,reset,themeData }) => {
+const {bot_name,bot_picture} = themeData?.results || {};
 
+  
   return (
     <div className="header">
       <div className="botDetails">
         <Avatar
-          alt="botAvatar"
-          src={dynamicData}
+          alt="BotAvatar"
+          src={bot_picture}
           sx={{ width: 35, height: 35 }}
         />
         <div className="botName">
           <Typography variant="body1" component="span">
-            name
+            {bot_name}
           </Typography>
         </div>
       </div>
@@ -37,6 +38,8 @@ const Header = ({onClose,reset }) => {
 
 Header.propTypes = {
   onClose: PropTypes.func.isRequired,
+  reset:PropTypes.func.isRequired,
+  themeData:PropTypes.func.isRequired,
 };
 
 export default Header;

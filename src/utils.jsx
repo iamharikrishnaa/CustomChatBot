@@ -1,4 +1,4 @@
-const responses = [
+export const Responses = [
     {
       text: "You can track your order by logging into your account and going to the 'Order History' section.",
     },
@@ -30,5 +30,3 @@ const responses = [
       text: "Yes, we offer international shipping to most countries. Please check our shipping policy for more details.",
     },
   ];
-
-export default responses;

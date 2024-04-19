@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Send } from "@mui/icons-material";
 import { InputAdornment, TextField } from "@mui/material";
+import novagito from "../../assets/Novagito.png";
 import PropTypes from "prop-types";
 
-const Footer = ({ onSubmit }) => {
+const Footer = ({ onSubmit, themeData }) => {
+  const { bot_chat_color } = themeData?.results || {};
   const [message, setMessage] = useState("");
 
   const summitMessage = (event) => {
     event.preventDefault();
     if (!message) {
-      alert("Message cannot be empty");
+      alert("Question cannot be empty");
       return; // Exit the function if message is empty
     }
     onSubmit(message); // Send the message to the parent component
@@ -20,20 +22,23 @@ const Footer = ({ onSubmit }) => {
     <form onSubmit={summitMessage}>
       <div className="footer">
         <div style={{ marginTop: 10 }}>
-          <div className="text-field">
+          <div
+            className="text-field"
+            style={{ backgroundColor: bot_chat_color }}
+          >
             <TextField
-              placeholder="Ex: What is the contact number of Novagito..."
+              placeholder="Please type your question here."
               variant="standard"
               fullWidth
               style={{
                 height: 42,
                 justifyContent: "center",
                 borderRadius: 23,
-                backgroundColor: "#D9DDFF",
+                backgroundColor: bot_chat_color,
               }}
               value={message}
               onChange={(event) => {
-              setMessage(event.target.value);
+                setMessage(event.target.value);
               }}
               onKeyDown={(event) => {
                 if (event.keyCode === 13) {
@@ -55,7 +60,9 @@ const Footer = ({ onSubmit }) => {
             />
           </div>
         </div>
-        <div className="novagito-logo">Powered By Logo</div>
+        <div className="novagito-logo">
+          Powered By <img style={{width:20,height:20}} src={novagito} alt="Novagito" />
+        </div>
       </div>
     </form>
   );
@@ -64,6 +71,7 @@ const Footer = ({ onSubmit }) => {
 // PropTypes validation
 Footer.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  themeData: PropTypes.func.isRequired,
 };
 
 export default Footer;
