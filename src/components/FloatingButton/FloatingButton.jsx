@@ -3,9 +3,6 @@ import Fab from "@mui/material/Fab";
 import { Avatar } from "@mui/material";
 import Container from "../Container/Container";
 
-
-
-
 const FloatingButton = ({user_id}) => {
   const [containerVisible, setContainerVisible] = useState(false);
   const [themeData, setThemeData] = useState(null);
